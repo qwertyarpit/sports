@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News Dashboard with Payout Features
 
-## Getting Started
+A responsive dashboard application for managing news articles and calculating payouts. Built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Features
+
+- User Authentication (Email/Password, Google, GitHub)
+- News Article Management
+- Advanced Filtering and Search
+- Payout Calculation
+- Export to PDF/CSV
+- Responsive Design
+- Admin-only Features
+- Data Visualization
+
+## Prerequisites
+
+- Node.js 16.x or later
+- npm or yarn
+- News API key (from [News API](https://newsapi.org/))
+- Google OAuth credentials (for Google sign-in)
+- GitHub OAuth credentials (for GitHub sign-in)
+
+## Setup
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd news-dashboard
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env.local` file in the root directory with the following variables:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-nextauth-secret-key-here
+
+# News API
+NEXT_PUBLIC_NEWS_API_KEY=your-news-api-key-here
+
+# OAuth Providers
+GOOGLE_ID=your-google-client-id
+GOOGLE_SECRET=your-google-client-secret
+
+GITHUB_ID=your-github-client-id
+GITHUB_SECRET=your-github-client-secret
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Default Admin Credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Email: admin@example.com
+- Password: admin
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                 # Next.js app directory
+├── components/          # React components
+├── store/              # Redux store and slices
+├── utils/              # Utility functions
+└── types/              # TypeScript type definitions
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js 13+ (App Router)
+- TypeScript
+- Tailwind CSS
+- Redux Toolkit
+- NextAuth.js
+- Recharts
+- jsPDF
+- React CSV
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
