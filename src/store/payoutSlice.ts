@@ -6,16 +6,11 @@ export interface PayoutRate {
   rate: number;
 }
 
-interface PayoutState {
-  rates: PayoutRate[];
-  totalPayout: number;
-}
-
 const initialState: PayoutState = {
-  rates: [
-    { type: "news", rate: 50 },
-    { type: "blog", rate: 75 },
-  ],
+  rates: {
+    news: 50,
+    blog: 75,
+  },
   totalPayout: 0,
 };
 
@@ -24,14 +19,7 @@ const payoutSlice = createSlice({
   initialState,
   reducers: {
     setPayoutRate: (state, action: PayloadAction<PayoutRate>) => {
-      const index = state.rates.findIndex(
-        (rate) => rate.type === action.payload.type
-      );
-      if (index !== -1) {
-        state.rates[index] = action.payload;
-      } else {
-        state.rates.push(action.payload);
-      }
+      state.rates[action.payload.type] = action.payload.rate;
       // Save to localStorage
       localStorage.setItem("payoutRates", JSON.stringify(state.rates));
     },
@@ -39,11 +27,8 @@ const payoutSlice = createSlice({
       state,
       action: PayloadAction<{ news: number; blog: number }>
     ) => {
-      const newsRate =
-        state.rates.find((rate) => rate.type === "news")?.rate || 0;
-      const blogRate =
-        state.rates.find((rate) => rate.type === "blog")?.rate || 0;
-
+      const newsRate = state.rates.news || 0;
+      const blogRate = state.rates.blog || 0;
       state.totalPayout =
         action.payload.news * newsRate + action.payload.blog * blogRate;
     },

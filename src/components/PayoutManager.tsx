@@ -7,7 +7,7 @@ import { setPayoutRate } from "@/store/payoutSlice";
 
 export default function PayoutManager() {
   const dispatch = useDispatch();
-  const { payoutRates } = useSelector((state: RootState) => state.payouts);
+  const { rates } = useSelector((state: RootState) => state.payouts);
   const [editingRate, setEditingRate] = useState<{
     type: string;
     rate: number;
@@ -16,6 +16,9 @@ export default function PayoutManager() {
   const handleRateChange = (type: string, rate: number) => {
     dispatch(setPayoutRate({ type: type as "news" | "blog", rate }));
   };
+
+  const newsRate = rates.news;
+  const blogRate = rates.blog;
 
   return (
     <div>
@@ -30,7 +33,7 @@ export default function PayoutManager() {
           <input
             type="number"
             id="newsRate"
-            value={payoutRates.news}
+            value={newsRate}
             onChange={(e) =>
               handleRateChange("news", parseFloat(e.target.value) || 0)
             }
@@ -49,7 +52,7 @@ export default function PayoutManager() {
           <input
             type="number"
             id="blogRate"
-            value={payoutRates.blog}
+            value={blogRate}
             onChange={(e) =>
               handleRateChange("blog", parseFloat(e.target.value) || 0)
             }
